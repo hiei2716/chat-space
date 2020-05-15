@@ -2,41 +2,21 @@
   .group-list
     .group-info
       .group-info__group-name
-        test1
+        = @group.name
       %h2.group-info__group-member
         Member:
-    = link_to '#',class: "edit" do
+        - @members.each do |member|
+          = member.name
+    = link_to edit_group_path(params[:group_id]),class: "edit" do
       .edit__edit-btn
         Edit
   .messages
-    .message
-      .message-info
-        .message-info__user-name
-          nick
-        .message-info__message-data
-          2020/05/13(Wed) 10:10:30
-      .message-text
-        おはよう！
-    .message
-      .message-info
-        .message-info__user-name
-          nick
-        .message-info__message-data
-          2020/05/13(Wed) 10:10:30
-      .message-text
-        おはよう！
-    .message
-      .message-info
-        .message-info__user-name
-          nick
-        .message-info__message-data
-          2020/05/13(Wed) 10:10:30
-      .message-text
-        おはよう！
+    = render @messages
   .form
-    %input.form__message
-    .form__mask
-      %label.form__mask__image
-        = icon('fa','image',class: 'icon')
-        %input.hidden{type: 'file'}
-    %input.form__submit{type: 'submit', value: 'Send'}
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      .form__mask
+        = f.label :image, class: 'form__mask__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'
