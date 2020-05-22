@@ -111,30 +111,36 @@
     background-color: #d2d2d2;
     height: 90px;
     padding: 20px 50px 20px 40px;
-    &__message {
-      border: none;
-      float: left;
-      height: 50px;
-      width: calc(100% - 150px);
-    }
-    &__mask {
-      background-color: $white;
-      float: left;
-      height: 50px;
-      padding-right: 10px;
-      &__image {
-        font-size: 20px;
-        line-height: 50px;
-      }
-      .hidden {
-        display: none;
+    .new_message {
+      display: flex;
+      .form__mess {
+        position: relative;
+        width: 100%;
+        .form__message {
+          border: none;
+          height: 50px;
+          width: 100%;
+        }
+        .form__mask {
+          display: inline;
+          height: 50px;
+          padding-right: 10px;
+          position: absolute;
+          right: 10px;
+          &__image {
+            font-size: 20px;
+            line-height: 50px;
+          }
+          .hidden {
+          display: none;
+          }
+        }
       }
     }
     &__submit {
       background-color: #38aef0;
       border: none;
       color: $white;
-      float: right;
       font-size: 16px;
       height: 50px;
       margin-left: 15px;
